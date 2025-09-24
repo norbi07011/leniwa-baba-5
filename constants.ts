@@ -132,7 +132,7 @@ export interface TeamMember {
 }
 
 export const TEAM_DATA: TeamMember[] = [
-  { nameKey: 'team_chef_name', imageId: 'zespol-chef.jpg', positionKey: 'team_chef_position' },
+  { nameKey: 'team_chef_name', imageId: 'szef kuchni Carlo Couto Martins.jpg', positionKey: 'team_chef_position' },
   { nameKey: 'team_waiter_name', imageId: 'zespol-waiter.jpg', positionKey: 'team_waiter_position' },
   { nameKey: 'team_manager_name', imageId: 'zespol-manager.jpg', positionKey: 'team_manager_position' },
   { nameKey: 'team_bartender_name', imageId: 'zespol-bartender.jpg', positionKey: 'team_bartender_position' },

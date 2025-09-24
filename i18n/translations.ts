@@ -77,7 +77,7 @@ export const translations: Translations = {
 
   // Team section
   'our_team_title': { [Language.NL]: "Ons Team", [Language.EN]: "Our Team", [Language.TR]: "Ekibimiz", [Language.PL]: "Nasz Zespół", [Language.SK]: "Náš Tím", [Language.DE]: "Unser Team", [Language.HU]: "Csapatunk", [Language.FR]: "Notre Équipe" },
-  'team_chef_name': { [Language.NL]: "Michał Kowalski", [Language.EN]: "Michał Kowalski", [Language.TR]: "Michał Kowalski", [Language.PL]: "Michał Kowalski", [Language.SK]: "Michał Kowalski", [Language.DE]: "Michał Kowalski", [Language.HU]: "Michał Kowalski", [Language.FR]: "Michał Kowalski" },
+  'team_chef_name': { [Language.NL]: "Carlos Couto Martins", [Language.EN]: "Carlos Couto Martins", [Language.TR]: "Carlos Couto Martins", [Language.PL]: "Carlos Couto Martins", [Language.SK]: "Carlos Couto Martins", [Language.DE]: "Carlos Couto Martins", [Language.HU]: "Carlos Couto Martins", [Language.FR]: "Carlos Couto Martins" },
   'team_chef_position': { [Language.NL]: "Hoofdchef", [Language.EN]: "Head Chef", [Language.TR]: "Baş Şef", [Language.PL]: "Szef Kuchni", [Language.SK]: "Hlavný Kuchár", [Language.DE]: "Küchenchef", [Language.HU]: "Főszakács", [Language.FR]: "Chef Principal" },
   'team_waiter_name': { [Language.NL]: "Anna Nowak", [Language.EN]: "Anna Nowak", [Language.TR]: "Anna Nowak", [Language.PL]: "Anna Nowak", [Language.SK]: "Anna Nowak", [Language.DE]: "Anna Nowak", [Language.HU]: "Anna Nowak", [Language.FR]: "Anna Nowak" },
   'team_waiter_position': { [Language.NL]: "Hoofdkelner", [Language.EN]: "Head Waitress", [Language.TR]: "Baş Garson", [Language.PL]: "Szef Sali", [Language.SK]: "Hlavná Čašníčka", [Language.DE]: "Chefkellnerin", [Language.HU]: "Főpincérnő", [Language.FR]: "Chef de Service" },
