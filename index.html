@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Polska Restauracja Leniwa Baba</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'primary-dark': '#0a0a0a',
+              'secondary-dark': '#1c1c1c',
+              'primary-light': '#f8f8f8',
+              'secondary-light': '#ffffff',
+              
+              'text-light': '#F5F5F5',
+              'text-light-secondary': '#a0a0a0',
+              'text-dark': '#1f2937',
+              'text-dark-secondary': '#4b5563',
+
+              'folk-red': '#E60032',
+              'folk-blue': '#00A9E0',
+              'folk-yellow': '#FFD100',
+              'folk-pink': '#E2007A',
+              'folk-green': '#58A700',
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              serif: ['Lora', 'serif'],
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: 0.5, transform: 'scale(1.05)' },
+                '100%': { opacity: 1, transform: 'scale(1)' },
+              },
+              'subtle-pulse': {
+                '0%, 100%': { opacity: 0.7, transform: 'scale(1)' },
+                '50%': { opacity: 1, transform: 'scale(1.03)' },
+              },
+              shake: {
+                '0%, 100%': { transform: 'translateX(0)' },
+                '10%, 30%, 50%, 70%, 90%': { transform: 'translateX(-5px)' },
+                '20%, 40%, 60%, 80%': { transform: 'translateX(5px)' },
+              },
+              glow: {
+                '0%, 100%': { 
+                  boxShadow: '0 0 5px rgba(230, 0, 50, 0.4), 0 0 10px rgba(230, 0, 50, 0.3), 0 0 15px rgba(230, 0, 50, 0.2)' 
+                },
+                '50%': { 
+                  boxShadow: '0 0 15px rgba(230, 0, 50, 0.6), 0 0 25px rgba(230, 0, 50, 0.5), 0 0 35px rgba(230, 0, 50, 0.4)' 
+                },
+              },
+              'gentle-bounce': {
+                '0%, 100%': { transform: 'translateY(0)', opacity: 1 },
+                '50%': { transform: 'translateY(-5px)', opacity: 0.9 },
+              },
+            },
+            animation: {
+              fadeIn: 'fadeIn 0.7s ease-in-out forwards',
+              'subtle-pulse': 'subtle-pulse 4s ease-in-out infinite',
+              shake: 'shake 0.5s ease-in-out',
+              glow: 'glow 3s ease-in-out infinite',
+              'gentle-bounce': 'gentle-bounce 2s ease-in-out infinite',
+            },
+          },
+        },
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/"
+  }
+}
+</script>
+<style>
+  .parallax-bg {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  /* Modern Wood Theme Overrides */
+  .theme-wood {
+    --tw-bg-opacity: 1;
+    /* Subtle, modern dark wood texture */
+    background-color: rgb(39 36 32 / var(--tw-bg-opacity)); /* #272420 */
+    background-image: url('https://www.transparenttextures.com/patterns/dark-wood.png');
+    --wood-accent: rgb(217 119 6); /* amber-600 */
+  }
+
+  /* Primary backgrounds (header/footer) - solid, very dark */
+  .theme-wood .dark\:bg-primary-dark,
+  .theme-wood .dark\:bg-primary-dark\/80,
+  .theme-wood .dark\:bg-primary-dark\/90,
+  .theme-wood .dark\:bg-primary-dark\/50 {
+    background-color: rgb(49 46 43 / 0.98) !important; /* #312e2b */
+  }
+  
+  /* Secondary backgrounds (CARDS) - uniform, slightly lighter dark */
+  .theme-wood .dark\:bg-secondary-dark,
+  .theme-wood .dark\:bg-secondary-dark\/80,
+  .theme-wood .dark\:bg-secondary-dark\/50,
+  .theme-wood .dark\:bg-secondary-dark\/30,
+  .theme-wood .bg-slate-100 { /* Covers footer, contact page cards */
+    background-color: rgb(74 68 63 / 0.95) !important; /* #4a443f */
+  }
+
+  /* Text Colors - Warm off-whites */
+  .theme-wood .text-text-dark,
+  .theme-wood .dark\:text-text-light {
+    color: rgb(235 225 215 / 1) !important; /* #ebe1d7 */
+  }
+  .theme-wood .text-text-dark-secondary,
+  .theme-wood .dark\:text-text-light-secondary,
+  .theme-wood .text-slate-500,
+  .theme-wood .dark\:text-slate-400 {
+    color: rgb(180 170 160 / 1) !important; /* #b4aaa0 */
+  }
+  .theme-wood .text-white {
+    color: rgb(235 225 215 / 1) !important;
+  }
+
+  /* Accent Color - Replaces folk-red with warm gold/amber */
+  .theme-wood .text-folk-red,
+  .theme-wood .dark\:text-folk-red {
+    color: var(--wood-accent) !important;
+  }
+  .theme-wood .hover\:text-folk-red:hover {
+    color: var(--wood-accent) !important;
+  }
+  .theme-wood .bg-folk-red {
+     background-color: var(--wood-accent) !important;
+  }
+  .theme-wood .hover\:bg-folk-pink:hover {
+     background-color: rgb(217 119 6 / 0.9) !important;
+  }
+  .theme-wood .border-folk-red,
+  .theme-wood .dark\:border-folk-red,
+  .theme-wood .focus\:border-folk-red:focus {
+      border-color: var(--wood-accent) !important;
+  }
+  .theme-wood .focus\:ring-folk-red:focus {
+      --tw-ring-color: var(--wood-accent) !important;
+  }
+   .theme-wood .hover\:bg-folk-red\/20:hover {
+      background-color: rgb(217 119 6 / 0.1) !important;
+  }
+  .theme-wood .hover\:bg-folk-red\/5:hover {
+      background-color: rgb(217 119 6 / 0.05) !important;
+  }
+   .theme-wood .dark\:hover\:bg-folk-red\/10:hover {
+       background-color: rgb(217 119 6 / 0.1) !important;
+  }
+   .theme-wood .dark\:hover\:bg-folk-red\/30:hover {
+       background-color: rgb(217 119 6 / 0.2) !important;
+  }
+
+  /* Border Colors - Subtle and consistent */
+  .theme-wood .border-slate-300,
+  .theme-wood .border-slate-200,
+  .theme-wood .dark\:border-folk-blue\/30,
+  .theme-wood .dark\:border-folk-blue\/20,
+  .theme-wood .dark\:border-folk-blue\/50,
+  .theme-wood .dark\:border-folk-red\/20,
+  .theme-wood .dark\:border-folk-red\/10,
+  .theme-wood .border-folk-red\/20,
+  .theme-wood .border-folk-red\/30 {
+    border-color: rgb(217 119 6 / 0.2) !important;
+  }
+  
+  /* Specific Component Colors */
+  .theme-wood .dark\:bg-black\/20 { background-color: rgb(49 46 43 / 0.5) !important; }
+  .theme-wood .dark\:hover\:bg-black\/30:hover { background-color: rgb(49 46 43 / 0.7) !important; }
+  .theme-wood .dark\:hover\:bg-white\/10:hover { background-color: rgb(235 225 215 / 0.07) !important; }
+  .theme-wood .dark\:bg-white\/10 {
+      background-color: rgb(235 225 215 / 0.05) !important;
+  }
+
+  /* Folk Flower Theme Overrides */
+  .theme-flower {
+    --tw-bg-opacity: 1;
+    background-color: rgb(18 18 18 / var(--tw-bg-opacity)); /* #121212 */
+    background-image: url('https://picsum.photos/seed/floral/1920/1080?grayscale&blur=1');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    --flower-accent: rgb(226 0 122); /* folk-pink */
+  }
+  .theme-flower .dark\:bg-primary-dark,
+  .theme-flower .dark\:bg-primary-dark\/80,
+  .theme-flower .dark\:bg-primary-dark\/90,
+  .theme-flower .dark\:bg-primary-dark\/50 {
+    background-color: rgb(26 26 26 / 0.95) !important; /* #1a1a1a */
+  }
+  .theme-flower .dark\:bg-secondary-dark,
+  .theme-flower .dark\:bg-secondary-dark\/80,
+  .theme-flower .dark\:bg-secondary-dark\/50,
+  .theme-flower .dark\:bg-secondary-dark\/30,
+  .theme-flower .bg-slate-100 { /* Covers footer, contact page cards */
+    background-color: rgb(42 42 42 / 0.95) !important; /* #2a2a2a */
+  }
+  .theme-flower .text-folk-red,
+  .theme-flower .dark\:text-folk-red {
+    color: var(--flower-accent) !important;
+  }
+   .theme-flower .hover\:text-folk-red:hover {
+    color: var(--flower-accent) !important;
+  }
+  .theme-flower .bg-folk-red {
+     background-color: var(--flower-accent) !important;
+  }
+  .theme-flower .hover\:bg-folk-pink:hover {
+      background-color: rgb(226 0 122 / 0.9) !important;
+  }
+  .theme-flower .border-folk-red,
+  .theme-flower .dark\:border-folk-red,
+  .theme-flower .focus\:border-folk-red:focus {
+      border-color: var(--flower-accent) !important;
+  }
+  .theme-flower .focus\:ring-folk-red:focus {
+      --tw-ring-color: var(--flower-accent) !important;
+  }
+   .theme-flower .hover\:bg-folk-red\/20:hover {
+      background-color: rgb(226 0 122 / 0.1) !important;
+  }
+  .theme-flower .hover\:bg-folk-red\/5:hover {
+      background-color: rgb(226 0 122 / 0.05) !important;
+  }
+   .theme-flower .dark\:hover\:bg-folk-red\/10:hover {
+       background-color: rgb(226 0 122 / 0.1) !important;
+  }
+   .theme-flower .dark\:hover\:bg-folk-red\/30:hover {
+       background-color: rgb(226 0 122 / 0.2) !important;
+  }
+  .theme-flower .animate-glow {
+    animation: none; /* Disable red glow on flower theme */
+  }
+
+</style>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script>
+      // Prevent FOUC (Flash of Unstyled Content)
+      const theme = localStorage.getItem('theme');
+      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('theme-wood', 'theme-flower');
+      } else if (theme === 'wood') {
+        document.documentElement.classList.add('dark', 'theme-wood');
+        document.documentElement.classList.remove('theme-flower');
+      } else if (theme === 'flower') {
+        document.documentElement.classList.add('dark', 'theme-flower');
+        document.documentElement.classList.remove('theme-wood');
+      }
+       else {
+        document.documentElement.classList.remove('dark', 'theme-wood', 'theme-flower');
+      }
+    </script>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Images</title>
+    <style>
+        body { 
+            padding: 20px; 
+            font-family: Arial, sans-serif; 
+        }
+        img { 
+            max-width: 200px; 
+            border: 1px solid #ccc; 
+            margin-bottom: 10px; 
+        }
+        h1, h2 { 
+            color: #333; 
+        }
+        div {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Images</h1>
+    <div>
+        <h2>Kotlet schabowy</h2>
+        <img src="/images/Kotlet%20schabowy.jpg" alt="Kotlet schabowy" />
+        <p>Path: /images/Kotlet%20schabowy.jpg</p>
+    </div>
+    
+    <div>
+        <h2>Żurek śląski</h2>
+        <img src="/images/Żurek%20śląski1.jpg" alt="Żurek śląski" />
+        <p>Path: /images/Żurek%20śląski1.jpg</p>
+    </div>
+
+    <div>
+        <h2>Pierogi z mięsem</h2>
+        <img src="/images/Pierogi%20z%20mięsem.jpg" alt="Pierogi z mięsem" />
+        <p>Path: /images/Pierogi%20z%20mięsem.jpg</p>
+    </div>
+
+    <script>
+        // Test if images load
+        document.querySelectorAll('img').forEach((img, index) => {
+            img.onload = () => console.log(`Image ${index + 1} loaded successfully`);
+            img.onerror = () => console.error(`Image ${index + 1} failed to load: ${img.src}`);
+        });
+    </script>
+</body>
+</html>
