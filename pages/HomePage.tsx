@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useAppContext } from '../hooks/useAppContext';
-import { FACEBOOK_URL, OCCASIONS_DATA } from '../constants';
+import { FACEBOOK_URL, OCCASIONS_DATA, TEAM_DATA } from '../constants';
 import { AnimatedSection } from '../components/AnimatedSection';
 import { FolkArtCorner, FolkArtFlourish, FolkArtFlowerFrame, FlowerArtCorner } from '../components/icons/FolkArtIcons';
 
@@ -43,6 +43,7 @@ export const HomePage: React.FC<PageProps> = ({ id }) => {
     const [currentOccasionIndex, setCurrentOccasionIndex] = useState(0);
     const [currentHeroImage, setCurrentHeroImage] = useState(0);
     const [flippedCards, setFlippedCards] = useState(new Set<number>());
+    const [currentTeamIndex, setCurrentTeamIndex] = useState(0);
 
     // Hero image carousel effect
     useEffect(() => {
@@ -61,6 +62,15 @@ export const HomePage: React.FC<PageProps> = ({ id }) => {
         return () => {
             clearInterval(occasionCarouselInterval);
         };
+    }, []);
+
+    // Team carousel effect
+    useEffect(() => {
+        const teamCarouselInterval = setInterval(() => {
+            setCurrentTeamIndex(prev => (prev + 1) % TEAM_DATA.length);
+        }, 5000); // Change team member every 5 seconds
+
+        return () => clearInterval(teamCarouselInterval);
     }, []);
     
     const heroOverlayBg = {
@@ -90,6 +100,14 @@ export const HomePage: React.FC<PageProps> = ({ id }) => {
 
     const prevOccasion = useCallback(() => {
         setCurrentOccasionIndex(prev => (prev - 1 + OCCASIONS_DATA.length) % OCCASIONS_DATA.length);
+    }, []);
+
+    const nextTeamMember = useCallback(() => {
+        setCurrentTeamIndex(prev => (prev + 1) % TEAM_DATA.length);
+    }, []);
+
+    const prevTeamMember = useCallback(() => {
+        setCurrentTeamIndex(prev => (prev - 1 + TEAM_DATA.length) % TEAM_DATA.length);
     }, []);
     
     const handleCardClick = (index: number) => {
@@ -214,6 +232,139 @@ export const HomePage: React.FC<PageProps> = ({ id }) => {
                                 <p className="text-lg text-white leading-relaxed drop-shadow-lg [text-shadow:_1px_1px_2px_rgb(0_0_0_/_80%)]">{t('about_us_text')}</p>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </AnimatedSection>
+
+            {/* Team Carousel Section */}
+            <AnimatedSection className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex justify-center items-center gap-4 mb-12">
+                    <FolkArtFlourish className="text-folk-blue/50 hidden md:block" />
+                    <h2 className="text-4xl font-bold text-folk-red font-serif text-center">{t('our_team_title')}</h2>
+                    <FolkArtFlourish className="text-folk-blue/50 transform scale-x-[-1] hidden md:block" />
+                </div>
+                <div className="relative flex justify-center items-center h-[28rem]">
+                    {/* Navigation Buttons */}
+                    <button 
+                        onClick={prevTeamMember} 
+                        className="absolute left-0 md:-left-8 z-30 p-2 bg-black/20 rounded-full text-white hover:bg-black/40 transition-all duration-300 hover:ring-2 hover:ring-white/50"
+                        title="Poprzedni członek zespołu"
+                        aria-label="Poprzedni członek zespołu"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+                    </button>
+                    <button 
+                        onClick={nextTeamMember} 
+                        className="absolute right-0 md:-right-8 z-30 p-2 bg-black/20 rounded-full text-white hover:bg-black/40 transition-all duration-300 hover:ring-2 hover:ring-white/50"
+                        title="Następny członek zespołu"
+                        aria-label="Następny członek zespołu"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                    </button>
+
+                    <div className="relative w-full h-full [perspective:1000px]">
+                        {TEAM_DATA.map((member, index) => {
+                            const offset = (index - currentTeamIndex + TEAM_DATA.length) % TEAM_DATA.length;
+                            const isCenter = offset === 0;
+                            const isLeft = offset === TEAM_DATA.length - 1;
+                            const isRight = offset === 1;
+                            const isVisible = isCenter || isLeft || isRight;
+
+                            let transform = '';
+                            let zIndex = 0;
+                            let scale = 0.8;
+                            let opacity = 0.6;
+                            
+                            if (isCenter) {
+                                transform = 'translateX(0) translateZ(200px)';
+                                zIndex = 30;
+                                scale = 1;
+                                opacity = 1;
+                            } else if (isLeft) {
+                                transform = 'translateX(-120%) rotateY(45deg) translateZ(0px)';
+                                zIndex = 10;
+                            } else if (isRight) {
+                                transform = 'translateX(120%) rotateY(-45deg) translateZ(0px)';
+                                zIndex = 10;
+                            }
+
+                            return (
+                                <div
+                                    key={index}
+                                    className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+                                        isVisible ? 'pointer-events-auto' : 'pointer-events-none opacity-0'
+                                    }`}
+                                    style={{
+                                        transform,
+                                        zIndex,
+                                        opacity: isVisible ? opacity : 0,
+                                    }}
+                                >
+                                    <div className="flex justify-center items-center h-full">
+                                        <div 
+                                            className={`relative w-72 h-80 rounded-2xl shadow-2xl transition-all duration-700 ${cardBaseBg[theme]} border-2 border-folk-red/30 hover:border-folk-red/60 overflow-hidden`}
+                                            style={{ 
+                                                transform: `scale(${scale})`,
+                                                backgroundImage: "url('/images/TŁO MENU.png')",
+                                                backgroundSize: 'cover',
+                                                backgroundPosition: 'center'
+                                            }}
+                                        >
+                                            {/* Dark overlay for better text readability */}
+                                            <div className="absolute inset-0 bg-black/30"></div>
+                                            
+                                            {/* Folklor decorative corners */}
+                                            <FlowerArtCorner className="absolute top-2 left-2 w-12 h-12 text-folk-red/40 pointer-events-none z-20" />
+                                            <FlowerArtCorner className="absolute top-2 right-2 w-12 h-12 text-folk-red/40 pointer-events-none transform rotate-90 z-20" />
+                                            <FlowerArtCorner className="absolute bottom-2 left-2 w-12 h-12 text-folk-red/40 pointer-events-none transform -rotate-90 z-20" />
+                                            <FlowerArtCorner className="absolute bottom-2 right-2 w-12 h-12 text-folk-red/40 pointer-events-none transform rotate-180 z-20" />
+
+                                            {/* Member Photo */}
+                                            <div className="relative z-10 p-6 h-full flex flex-col items-center justify-center text-center">
+                                                <div className="w-32 h-32 rounded-full overflow-hidden shadow-xl border-4 border-folk-red/50 mb-4">
+                                                    <img 
+                                                        src={`/images/${member.imageId}`} 
+                                                        alt={t(member.nameKey)} 
+                                                        className="w-full h-full object-cover"
+                                                        onError={(e) => {
+                                                            console.error(`Failed to load team member image: /images/${member.imageId}`);
+                                                            // Fallback to placeholder
+                                                            e.currentTarget.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(t(member.nameKey))}&size=128&background=8B4513&color=fff&bold=true`;
+                                                        }}
+                                                    />
+                                                </div>
+                                                
+                                                {/* Member Info */}
+                                                <div className="text-white">
+                                                    <h3 className="text-xl font-bold font-serif mb-2 drop-shadow-lg [text-shadow:_2px_2px_4px_rgb(0_0_0_/_80%)]">
+                                                        {t(member.nameKey)}
+                                                    </h3>
+                                                    <p className="text-lg text-folk-yellow font-medium drop-shadow-lg [text-shadow:_1px_1px_2px_rgb(0_0_0_/_80%)]">
+                                                        {t(member.positionKey)}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+
+                    {/* Team member indicators */}
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                        {TEAM_DATA.map((_, index) => (
+                            <button
+                                key={index}
+                                onClick={() => setCurrentTeamIndex(index)}
+                                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                                    index === currentTeamIndex 
+                                        ? 'bg-folk-red scale-125' 
+                                        : 'bg-white/50 hover:bg-white/80'
+                                }`}
+                                aria-label={`Przejdź do członka zespołu ${index + 1}`}
+                            />
+                        ))}
                     </div>
                 </div>
             </AnimatedSection>

@@ -45,16 +45,16 @@ export const MENU_DATA: MenuCategory[] = [
       { name: 'weganska_zapiekanka', description: 'weganska_zapiekanka_desc', imageIds: ['vegan zapiekanka z fasoli i warzyw.jpg'], ingredientKeys: ['ingredient_potatoes', 'ingredient_broccoli', 'ingredient_carrot', 'ingredient_yeast_flakes', 'ingredient_plant_milk', 'ingredient_cashews', 'ingredient_onion', 'ingredient_garlic', 'ingredient_nutmeg'], allergenKeys: ['allergen_nuts', 'allergen_soy'] },
       { name: 'pyzy_miesem', description: 'pyzy_miesem_desc', imageIds: ['pyzy z miesem.jpg'], ingredientKeys: ['ingredient_potatoes', 'ingredient_flour', 'ingredient_egg', 'ingredient_minced_meat', 'ingredient_bacon', 'ingredient_onion'], allergenKeys: ['allergen_gluten', 'allergen_eggs'] },
       { name: 'losos_smazony', description: 'losos_smazony_desc', imageIds: ['losos-smazony.jpg'], ingredientKeys: ['ingredient_salmon_fillet', 'ingredient_butter', 'ingredient_dill', 'ingredient_cream', 'ingredient_potatoes', 'ingredient_salt', 'ingredient_pepper'], allergenKeys: ['allergen_fish', 'allergen_milk'] },
+      { name: 'pierogi_ruskie', description: 'pierogi_ruskie_desc', imageIds: ['Pierogi z mięsem.jpg'], ingredientKeys: ['ingredient_dough', 'ingredient_filling_ruskie', 'ingredient_garnish_ruskie'], allergenKeys: ['allergen_gluten', 'allergen_eggs', 'allergen_milk'] },
+      { name: 'pierogi_miesem', description: 'pierogi_miesem_desc', imageIds: ['pierogi-z-miesem.jpg'], ingredientKeys: ['ingredient_dough', 'ingredient_filling_meat', 'ingredient_garnish'], allergenKeys: ['allergen_gluten', 'allergen_eggs'] },
+      { name: 'pierogi_kapusta_grzybami', description: 'pierogi_kapusta_grzybami_desc', imageIds: ['Pierogi z kapustą i grzybami.jpg'], ingredientKeys: ['ingredient_dough', 'ingredient_filling_cabbage'], allergenKeys: ['allergen_gluten', 'allergen_eggs'] },
+      { name: 'pierogi_bryndza_szpinakiem', description: 'pierogi_bryndza_szpinakiem_desc', imageIds: ['Pierogi z bryndzą i szpinakiem.jpg'], ingredientKeys: ['ingredient_dough', 'ingredient_filling_spinach', 'ingredient_sage_butter'], allergenKeys: ['allergen_gluten', 'allergen_eggs', 'allergen_milk'] },
     ],
   },
   {
     category: 'category_appetizers',
     items: [
       { name: 'kanapki_smalcem', description: 'kanapki_smalcem_desc', imageIds: ['Pajda chleba ze smalcem.jpg'], ingredientKeys: ['ingredient_rustic_bread', 'ingredient_homemade_lard', 'ingredient_pickled_cucumbers', 'ingredient_onion'], allergenKeys: ['allergen_gluten'] },
-      { name: 'pierogi_ruskie', description: 'pierogi_ruskie_desc', imageIds: ['Pierogi z mięsem.jpg'], ingredientKeys: ['ingredient_dough', 'ingredient_filling_ruskie', 'ingredient_garnish_ruskie'], allergenKeys: ['allergen_gluten', 'allergen_eggs', 'allergen_milk'] },
-      { name: 'pierogi_miesem', description: 'pierogi_miesem_desc', imageIds: ['pierogi-z-miesem.jpg'], ingredientKeys: ['ingredient_dough', 'ingredient_filling_meat', 'ingredient_garnish'], allergenKeys: ['allergen_gluten', 'allergen_eggs'] },
-      { name: 'pierogi_kapusta_grzybami', description: 'pierogi_kapusta_grzybami_desc', imageIds: ['Pierogi z kapustą i grzybami.jpg'], ingredientKeys: ['ingredient_dough', 'ingredient_filling_cabbage'], allergenKeys: ['allergen_gluten', 'allergen_eggs'] },
-      { name: 'pierogi_bryndza_szpinakiem', description: 'pierogi_bryndza_szpinakiem_desc', imageIds: ['Pierogi z bryndzą i szpinakiem.jpg'], ingredientKeys: ['ingredient_dough', 'ingredient_filling_spinach', 'ingredient_sage_butter'], allergenKeys: ['allergen_gluten', 'allergen_eggs', 'allergen_milk'] },
     ],
   },
   {
@@ -123,4 +123,17 @@ export const OCCASIONS_DATA: Occasion[] = [
   { key: 'occasion_karaoke', imageId: 'Kolorowe drinki.jpg', descriptionKey: 'occasion_karaoke_desc' },
   { key: 'occasion_playstation', imageId: 'Wieczór z grami.jpg', descriptionKey: 'occasion_playstation_desc' },
   { key: 'occasion_other', imageId: 'Inna okazja.jpg', descriptionKey: 'occasion_other_desc' },
+];
+
+export interface TeamMember {
+  nameKey: string;
+  imageId: string;
+  positionKey: string;
+}
+
+export const TEAM_DATA: TeamMember[] = [
+  { nameKey: 'team_chef_name', imageId: 'zespol-chef.jpg', positionKey: 'team_chef_position' },
+  { nameKey: 'team_waiter_name', imageId: 'zespol-waiter.jpg', positionKey: 'team_waiter_position' },
+  { nameKey: 'team_manager_name', imageId: 'zespol-manager.jpg', positionKey: 'team_manager_position' },
+  { nameKey: 'team_bartender_name', imageId: 'zespol-bartender.jpg', positionKey: 'team_bartender_position' },
 ];
